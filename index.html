@@ -25,7 +25,7 @@
       tooltip: {
         trigger: 'axis',
         formatter: function (params) {
-          return `x: ${params[0].data[0]}<br>y: ${params[0].data[1]}`;
+          return `x: ${params[0].data['x']}<br>y: ${params[0].data.mark}`;
         },
       },
       dataset: [
@@ -47,6 +47,7 @@
             { x: 3, mark: 160 },
             { x: 4, mark: 90 },
             { x: 5, mark: 60 },
+            { x: 10, mark: 60 },
           ],
         },
       ],
@@ -60,8 +61,10 @@
       series: [
         {
           name: 'Vertical Line',
+  
           type: 'line',
           symbol: 'none', // Hide the symbols at each point
+          datasetIndex: 1, 
           lineStyle: {
             color: 'red',
             width: 2,
@@ -88,6 +91,48 @@
             data: [
               {
                 xAxis: 3,
+                lineStyle: {
+                  color: 'blue',
+                  width: 2,
+                  type: 'dashed',
+                },
+              },
+            ],
+          },
+        },
+
+
+        {
+          name: 'Vertical Line 2',
+          type: 'line',
+          symbol: 'none', // Hide the symbols at each point
+          datasetIndex: 0, 
+          lineStyle: {
+            color: 'red',
+            width: 1,
+          },
+
+          markLine: {
+            silent: true,
+            symbol: ['none', 'triangle'],
+            symbolSize: [8, 7],
+            animation: true,
+            lineStyle: {
+              type: 'dashed',
+              color: '#F47C15',
+            },
+            label: {
+              show: true,
+              position: 'end',
+              color: 'cyan',
+              fontSize: 12,
+              fontWeight: 'normal',
+
+              formatter: 'currentDepthLabel' + ' ft: ' + 'lastActivity',
+            },
+            data: [
+              {
+                xAxis: 8,
                 lineStyle: {
                   color: 'blue',
                   width: 2,
