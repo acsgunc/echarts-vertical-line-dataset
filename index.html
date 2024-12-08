@@ -1,87 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ECharts Vertical Line Example</title>
-    <!-- Load ECharts from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
-  </head>
 
-  <body>
-    <div id="chart" style="width: 600px; height: 400px"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECharts Vertical Line Example</title>
+  <!-- Load ECharts from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+</head>
 
-    <script>
-      // Initialize the ECharts instance
-      var myChart = echarts.init(document.getElementById('chart'));
+<body>
+  <div id="chart" style="width: 600px; height: 400px"></div>
 
-      // Specify chart configuration
-      var option = {
-        title: {
-          text: 'Vertical Line at x = 55',
-          left: 'center',
+  <script>
+    // Initialize the ECharts instance
+    var myChart = echarts.init(document.getElementById('chart'));
+
+    // Specify chart configuration
+    var option = {
+      title: {
+        text: 'Vertical Line at x = 55',
+        left: 'center',
+      },
+      tooltip: {
+        trigger: 'axis',
+        formatter: function (params) {
+          return `x: ${params[0].data[0]}<br>y: ${params[0].data[1]}`;
         },
-        tooltip: {
-          trigger: 'axis',
-          formatter: function (params) {
-            return `x: ${params[0].data[0]}<br>y: ${params[0].data[1]}`;
+      },
+      dataset: [
+        {
+          // First dataset
+          source: [
+            { x: 1, value: 120 },
+            { x: 2, value: 200 },
+            { x: 3, value: 150 },
+            { x: 4, value: 80 },
+            { x: 5, value: 70 },
+          ],
+        },
+        {
+          // Second dataset
+          source: [
+            { x: 1, mark: 100 },
+            { x: 2, mark: 180 },
+            { x: 3, mark: 160 },
+            { x: 4, mark: 90 },
+            { x: 5, mark: 60 },
+          ],
+        },
+      ],
+      xAxis: {
+        type: 'value',
+  
+      },
+      yAxis: {
+        type: 'value',
+      },
+      series: [
+        {
+          name: 'Vertical Line',
+          type: 'line',
+          symbol: 'none', // Hide the symbols at each point
+          lineStyle: {
+            color: 'red',
+            width: 2,
           },
-        },
-        xAxis: {
-          type: 'value',
-          min: 0,
-          max: 100,
-        },
-        yAxis: {
-          type: 'value',
-          min: 0,
-          max: 100, // Adjust if needed
-        },
-        series: [
-          {
-            name: 'Vertical Line',
-            type: 'line',
-            symbol: 'none', // Hide the symbols at each point
+
+          markLine: {
+            silent: true,
+            symbol: ['none', 'triangle'],
+            symbolSize: [8, 7],
+            animation: true,
             lineStyle: {
-              color: 'red',
-              width: 2,
+              type: 'dashed',
+              color: '#F47C15',
             },
+            label: {
+              show: true,
+              position: 'end',
+              color: 'cyan',
+              fontSize: 12,
+              fontWeight: 'normal',
 
-            markLine: {
-              silent: true,
-              symbol: ['none', 'triangle'],
-              symbolSize: [8, 7],
-              animation: true,
-              lineStyle: {
-                type: 'dashed',
-                color: '#F47C15',
-              },
-              label: {
-                show: true,
-                position: 'start',
-                color: 'cyan',
-                fontSize: 12,
-                fontWeight: 'normal',
-
-                formatter: 'currentDepthLabel' + ' ft: ' + 'lastActivity',
-              },
-              data: [
-                {
-                  xAxis: 60,
-                  lineStyle: {
-                    color: 'blue',
-                    width: 2,
-                    type: 'dashed',
-                  },
+              formatter: 'currentDepthLabel' + ' ft: ' + 'lastActivity',
+            },
+            data: [
+              {
+                xAxis: 3,
+                lineStyle: {
+                  color: 'blue',
+                  width: 2,
+                  type: 'dashed',
                 },
-              ],
-            },
+              },
+            ],
           },
-        ],
-      };
+        },
+      ],
+    };
 
-      // Use the specified configuration and data to display the chart
-      myChart.setOption(option);
-    </script>
-  </body>
+    // Use the specified configuration and data to display the chart
+    myChart.setOption(option);
+  </script>
+</body>
+
 </html>
