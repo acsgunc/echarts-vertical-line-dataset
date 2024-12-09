@@ -53,7 +53,7 @@
       ],
       xAxis: {
         type: 'value',
-  
+
       },
       yAxis: {
         type: 'value',
@@ -61,10 +61,10 @@
       series: [
         {
           name: 'Vertical Line',
-  
+
           type: 'line',
           symbol: 'none', // Hide the symbols at each point
-          datasetIndex: 1, 
+          datasetIndex: 1,
           lineStyle: {
             color: 'red',
             width: 2,
@@ -106,7 +106,7 @@
           name: 'Vertical Line 2',
           type: 'line',
           symbol: 'none', // Hide the symbols at each point
-          datasetIndex: 0, 
+          datasetIndex: 0,
           lineStyle: {
             color: 'red',
             width: 1,
@@ -114,8 +114,12 @@
 
           markLine: {
             silent: true,
-            symbol: ['triangle', 'circle', ],
+            symbol: ['triangle', 'circle',],
             symbolSize: [30, 50], // [width, height]
+            symbolOffset: [
+              [0, 20],    // offset of starting symbol
+              ['70%', 0]  // offset of ending symbol
+            ],
             animation: true,
             lineStyle: {
               type: 'dashed',
